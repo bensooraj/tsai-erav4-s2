@@ -10,3 +10,9 @@ wheels/
 .venv
 
 app/static/uploads
+iac/.terraform
+**.tfstate
+**.tfstate.backup
+*.lock.hcl
+*.tfstate.lock.info
+*.pem
