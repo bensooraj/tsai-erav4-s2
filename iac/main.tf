@@ -167,52 +167,37 @@ resource "aws_instance" "app" {
   # key_name                    = length(aws_key_pair.generated_key) == 0 ? null : aws_key_pair.generated_key[0].key_name
 
   user_data = <<-EOF
-              #!/bin/bash
-              set -eux
+#!/bin/bash
+set -eux
 
-              sudo su
+sudo su
 
-              # Update & tools
-              dnf -y update
-              dnf -y install git curl --allowerasing
+# Update & tools
+dnf -y update
+dnf -y install git curl --allowerasing
 
-              # Install uv (https://astral.sh/uv)
-              curl -LsSf https://astral.sh/uv/install.sh | sh
-              export PATH="/root/.cargo/bin:$PATH"
+# Install uv (https://astral.sh/uv)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+export PATH="/root/.cargo/bin:$PATH"
 
-              # App directory
-              cd /opt
+# App directory
+cd /opt
 
-              # Clone your repo (replace with your URL)
-              git clone ${var.github_repo_url} app
-              cd app
+# Clone your repo (replace with your URL)
+git clone ${var.github_repo_url} app
+cd app
 
-              # Dependency sync (uses pyproject.toml + uv.lock)
-              uv sync --frozen --no-cache
-              cd app
+# Copy systemd service script
+cp iac/user_data/fastapi.service /etc/systemd/system/fastapi.service
 
-              # Systemd service using your exact command
-              cat >/etc/systemd/system/fastapi.service <<EOFS
-              [Unit]
-              Description=FastAPI App
-              After=network.target
+# Dependency sync (uses pyproject.toml + uv.lock)
+uv sync --frozen --no-cache
+cd app
 
-              [Service]
-              Type=simple
-              WorkingDirectory=/opt/app/app
-              ExecStart==/root/.local/bin/uv run fastapi run --port 80 --host 0.0.0.0
-              Restart=always
-              RestartSec=3
-              Environment=PATH=/opt/app/app/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:=/root/.local/bin
-
-              [Install]
-              WantedBy=multi-user.target
-EOFS
-
-              systemctl daemon-reload
-              systemctl enable --now fastapi.service
-              systemctl start fastapi.service
-              EOF
+systemctl daemon-reload
+systemctl enable --now fastapi.service
+systemctl start fastapi.service
+EOF
 
   tags = { Name = "${var.name}-ec2" }
 }
