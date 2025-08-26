@@ -1,0 +1,112 @@
+/* Base */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 20px;
+  color: #0f172a;
+  background: #f8fafc;
+}
+h1 { margin: 0 0 16px; font-size: 1.5rem; }
+section {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+/* Section 1 */
+.animal-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.animal-choices label {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+.preview-box {
+  width: 200px;
+  height: 200px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  overflow: hidden;
+}
+.preview-box img {
+  max-width: 100%;
+  max-height: 100%;
+  display: none; /* shown after a radio is selected */
+}
+.preview-box .placeholder {
+  color: #64748b;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 0 8px;
+}
+
+/* Section 2 */
+#uploadForm {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#uploadBtn {
+  padding: 8px 14px;
+  border: 1px solid #0ea5e9;
+  background: #38bdf8;
+  color: #0c4a6e;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#uploadBtn:hover {
+  filter: brightness(0.95);
+}
+.msg {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  display: none;
+}
+.msg.ok { color: #0f766e; }
+.msg.err { color: #b91c1c; }
+
+/* Results card & table */
+.card {
+  margin-top: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 12px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.card-title {
+  margin: 0 0 10px 0;
+  font-size: 1rem;
+}
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.results-table th,
+.results-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  vertical-align: middle;
+  word-break: break-word;
+}
+.results-table thead th {
+  background: #f3f4f6;
+  font-weight: 600;
+}
+.results-table tbody tr:last-child td {
+  border-bottom: none;
+}

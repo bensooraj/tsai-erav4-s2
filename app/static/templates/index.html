@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Animal Preview & File Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <h1>Animal Preview & File Upload</h1>
+
+    <!-- SECTION 1: Animal chooser with preview -->
+    <section aria-labelledby="sec1-title">
+        <h2 id="sec1-title">Section 1 — Choose an animal</h2>
+        <div class="animal-row">
+            <div class="animal-choices">
+                <label><input type="radio" name="animal" value="cat" /> Cat</label>
+                <label><input type="radio" name="animal" value="dog" /> Dog</label>
+                <label><input type="radio" name="animal" value="elephant" /> Elephant</label>
+            </div>
+
+            <div class="preview-box" id="preview" aria-live="polite" aria-label="Animal image preview">
+                <span class="placeholder">Select an animal to preview</span>
+                <img id="animal-img" src="" alt="Animal preview" />
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: File upload (max 5 MB) -->
+    <section aria-labelledby="sec2-title">
+        <h2 id="sec2-title">Section 2 — Upload a file (max 5 MB)</h2>
+
+        <form id="uploadForm">
+            <input id="fileInput" type="file" />
+            <button id="uploadBtn" type="submit">Upload</button>
+        </form>
+
+        <div id="fileMsg" class="msg" role="status" aria-live="polite"></div>
+
+        <!-- Results table -->
+        <div class="card" id="uploadResults" hidden>
+            <h3 class="card-title">Uploaded File Details</h3>
+            <table class="results-table" aria-describedby="uploadResults">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Size (MB)</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    <!-- JS injects a single row here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- External JS -->
+    <script src="/static/js/app.js" defer></script>
+</body>
+
+</html>
