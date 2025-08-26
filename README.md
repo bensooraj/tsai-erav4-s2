@@ -133,3 +133,10 @@ aws_session_token=...
 ## Customization
 
 - Update `iac/variables.tf` variables for your AWS region, instance type, and GitHub repo URL.
+
+## Useful Scripts
+
+```bash
+# For listing all terraform resources
+terraform show -json | jq -c '.values.root_module.resources[] | .address + " " + .values.id' -r\n
+```
