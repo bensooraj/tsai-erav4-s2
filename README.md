@@ -12,6 +12,10 @@ A FastAPI web-application deployed on AWS using Terraform Infrastructure as Code
 - Optional SSH key pair generation
 - Systemd service for FastAPI app
 
+## Minimal Architecture Diagram
+
+![Architecture Diagram](arch.png)
+
 ## Project Structure
 
 ```sh
@@ -22,7 +26,8 @@ A FastAPI web-application deployed on AWS using Terraform Infrastructure as Code
 ├── main.py
 ├── routers
 │   ├── __init__.py
-│   └── items.py
+│   ├── index.py
+│   └── upload.py
 └── static
     ├── css
     │   └── style.css
@@ -35,7 +40,7 @@ A FastAPI web-application deployed on AWS using Terraform Infrastructure as Code
     ├── templates
     │   └── index.html
     └── uploads
-        └── # Uploaded files
+        └── # uploaded files
 
 ```
 
