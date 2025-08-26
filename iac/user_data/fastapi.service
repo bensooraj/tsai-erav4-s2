@@ -1,0 +1,14 @@
+[Unit]
+Description=FastAPI App
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/app/app
+ExecStart==/root/.local/bin/uv run fastapi run --port 80 --host 0.0.0.0
+Restart=always
+RestartSec=3
+Environment=PATH=/opt/app/app/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:=/root/.local/bin
+
+[Install]
+WantedBy=multi-user.target
